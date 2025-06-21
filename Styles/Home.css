@@ -1,0 +1,222 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+header{
+    display : flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 130px;
+    color : white;
+    background-color: #1AC073;
+}
+
+.logo{
+font-family: 'Squada One', sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 20px;
+  letter-spacing: -0.012em;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+  padding-left: 7%;
+}
+
+.nav-links li a{
+  text-decoration: none;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  letter-spacing: -0.012em; 
+}
+
+.icons {
+ display : flex;
+ align-items: center;
+ justify-content: center;
+ gap: 25px;
+ padding-right: 2%;
+}
+
+.icons img{
+  font-size: 10px;
+  height: auto;
+  cursor: pointer;
+}
+
+.hero{
+   background-color: #1AC073;
+ display : flex;
+ flex-direction: row;
+ justify-content: center;
+ padding: 170px 130px 0 130px;
+}
+
+.hero-display{
+  color:white;
+  flex : 1;
+  gap: 500px;
+}
+
+.hero-display h1{
+  font-size: 66px;
+  margin-bottom: 10px;
+}
+
+.hero-display p{
+  font-size : 18px;
+  font-weight: 400px;
+  line-height: 20px;
+  letter-spacing: -0.012em; 
+  width: 450px;
+  margin-bottom: 20px;
+}
+
+.hero-display input {
+      padding: 10px;
+      width: 300px;
+      height : 50px;
+    }
+
+ .hero-display button {
+  background-color: #ffbb00;
+  border: none;
+  cursor: pointer;
+    }
+
+.hero-img{
+  flex:1;
+  padding-left: 9%;
+  letter-spacing: -0.012em; 
+}
+
+.kitchen{
+  padding: 122px;
+}
+
+.kitchen p{
+  font-size: 40px;
+  font-weight:800;
+   line-height: 24px;
+}
+
+ .cards, .popular-items {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .card, .item {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      text-align: center;
+      padding-bottom: 10px;
+    }
+
+    .card img, .item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .info {
+      padding: 10px;
+      font-size: 14px;
+    }
+
+
+   .pizza-card {
+  width: 280px;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  background-color: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); 
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+}
+
+.pizza-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.discount-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.card-content {
+  padding: 10px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.pizza-title {
+  font-weight: 500;
+}
+
+.pizza-price {
+  font-weight: bold;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rating-time {
+  display: flex;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.rating {
+  background-color: #eee;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.time {
+  background-color: #eee;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.add-button {
+  background-color: #ffc107;
+  color: white;
+  font-size: 20px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
