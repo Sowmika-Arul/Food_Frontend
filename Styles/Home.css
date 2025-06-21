@@ -63,7 +63,8 @@ font-family: 'Squada One', sans-serif;
  display : flex;
  flex-direction: row;
  justify-content: center;
- padding: 170px 130px 0 130px;
+ padding: 170px 130px 10px 130px;
+ gap: 3%;
 }
 
 .hero-display{
@@ -86,22 +87,47 @@ font-family: 'Squada One', sans-serif;
   margin-bottom: 20px;
 }
 
-.hero-display input {
-      padding: 10px;
-      width: 300px;
-      height : 50px;
-    }
+.search-bar {
+  display: flex;
+  width: 390px;
+  height: 56px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 40px 5px;
+  
+}
 
- .hero-display button {
-  background-color: #ffbb00;
+.search-bar input {
+  flex: 1;
+  padding: 15px 20px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: #333;
+}
+
+.search-bar input::placeholder {
+  color: #888;
+}
+
+.search-bar button {
+  background-color: #f1b700; 
+  color: white;
+  padding: 0 25px;
+  font-size: 16px;
   border: none;
   cursor: pointer;
-    }
+}
+
+.search-bar button:hover {
+  background-color: #d99f00;
+}
+
 
 .hero-img{
   flex:1;
   padding-left: 9%;
-  letter-spacing: -0.012em; 
 }
 
 .kitchen{
@@ -218,5 +244,83 @@ font-family: 'Squada One', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+}
+
+.carousel-section {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.carousel-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  max-width: 1080px;
+  margin: auto;
+}
+
+.carousel-window {
+  overflow: hidden;
+  width: 900px; /* 3 cards × 300px */
+}
+
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.4s ease-in-out;
+}
+
+.card {
+  min-width: 280px;
+  max-width: 280px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.info {
+  padding: 10px;
+  text-align: left;
+}
+
+.info p {
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.carousel-btn {
+  background-color: #1ac073;
+  border: none;
+  color: white;
+  font-size: 24px;
+  padding: 8px 14px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.request-btn {
+  margin-top: 20px;
+  background-color: #1ac073;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
   cursor: pointer;
 }
