@@ -519,16 +519,16 @@ font-family: 'Squada One', sans-serif;
   background-color: #fbbc04; /* yellow */
   border-radius: 8px;
   overflow: hidden;
-  height: 36px;
+  height: 25px;
 }
 
 .qty-btn {
   background: transparent;
   border: none;
   color: white;
-  font-size: 20px;
-  width: 56px;
-  height: 56px;
+  font-size: 30px;
+  width: 30px;
+  height: 35px;
   cursor: pointer;
   font-weight: bold;
 }
@@ -544,6 +544,18 @@ font-family: 'Squada One', sans-serif;
   height: 100%;
 }
 
+.badge.flat {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;                         /* space between star and text */
+  padding: 4px 8px;
+  background-color: #f3f4f6;        /* light gray background */
+  border: 1px solid #d1d1d1;        /* optional subtle border */
+  border-radius: 8px;               /* ✅ rounded corners */
+  font-size: 13px;
+  font-weight: 500;
+  color: #1c1c1e;
+}
 
 .carousel-btn {
   width: 60px;
