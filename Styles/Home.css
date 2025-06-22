@@ -436,7 +436,7 @@ font-family: 'Squada One', sans-serif;
 
 .carousel-window {
   overflow: hidden;
-  width: 900px; /* 3 cards × 300px */
+  width: 900px; 
 }
 
 .carousel-track {
@@ -480,32 +480,37 @@ font-family: 'Squada One', sans-serif;
   gap: 10px;
 }
 
-.badge {
+.badge-container {
   display: flex;
+  gap: 10px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.badge {
+  display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: #f0f0f0;
-  padding: 6px 14px;
-  border-radius: 20px;
+  padding: 4px 8px;
+  font-size: 14px;
   font-weight: 500;
-  color: #111;
-  box-shadow: 
-    4px 4px 8px rgba(0, 0, 0, 0.2),
-    -4px -4px 8px rgba(255, 255, 255, 0.7);
-  transition: all 0.2s ease;
+  border-radius: 8px;           /* less curvy than pill */
+  background-color: #F7F8FA;
+  color: #1c1c1e;
 }
 
-.badge.flat {
-  background: #f4f4f4;
-  box-shadow: none;
+/* Rating badge specific styling */
+.badge.rating {
+  border: 1px solid #f0f0f0;/* subtle gray border */
 }
 
-.badge.neuo {
-  background: #f0f0f0;
-  box-shadow: 
-    4px 4px 8px rgba(0, 0, 0, 0.2),
-    -4px -4px 8px rgba(255, 255, 255, 0.7);
+/* Time badge with side shadows */
+.badge.time {
+  background-color: #f9fafb;
+  box-shadow:
+    inset 4px 0 #d1d1d1,
+    inset -4px 0 #d1d1d1;
 }
+
 
 /* Quantity stepper */
 .quantity {
@@ -528,6 +533,7 @@ font-family: 'Squada One', sans-serif;
   font-weight: bold;
 }
 
+
 .qty-value {
   background: white;
   padding: 0 16px;
@@ -540,38 +546,27 @@ font-family: 'Squada One', sans-serif;
 
 
 .carousel-btn {
-  width: 42px;
-  height: 42px;
+  width: 60px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  font-size: 18px;
   cursor: pointer;
   border: 2px solid #1ac073;
   transition: all 0.3s ease;
 }
 
-/* Prev button styles */
 .carousel-btn.prev {
   background-color: transparent;
-  color: #1ac073; /* Icon color */
+  color: #1ac073; 
 }
 
-/* Next button styles */
 .carousel-btn.next {
   background-color: #1ac073;
   color: white;
 }
 
-/* Optional: Add hover effects */
-.carousel-btn.prev:hover {
-  background-color: rgba(26, 192, 115, 0.1);
-}
-
-.carousel-btn.next:hover {
-  background-color: #169a5a;
-}
 
 .request-btn {
   margin-top: 20px;
@@ -580,6 +575,139 @@ font-family: 'Squada One', sans-serif;
   color: white;
   padding: 10px 20px;
   border-radius: 6px;
+  cursor: pointer;
+}
+
+article{
+  text-align: center;
+  padding: 60px 20px 40px;
+  height: 860px;
+    background: linear-gradient(to bottom, white 50%, #d3f2d7 50%);
+}
+
+article .review{
+ margin-bottom: 40px;
+}
+
+article .review h2{
+  font-size: 40px;
+  font-weight:700;
+  font-family: 'Montserrat', sans-serif;
+  color:  #252B42;
+  letter-spacing: 0.2px;
+  line-height: 57px;
+}
+
+article .review .highlight{
+  display: block;
+  margin-bottom: 10px;
+  color: #252B42;
+}
+
+.review p{
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.video-container {
+  position: relative;
+  width: 877px;
+  height: 442px;
+  border-radius: 5px;
+  border-width: 1px;
+  margin: 0 auto;
+  overflow: hidden;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.video-thumbnail {
+  width: 100%;
+  display: block;
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #2ed573;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.play-icon {
+  font-size: 26px;
+  color: white;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.play-icon1{
+   color: #2ed573;
+    font-size: 26px;
+    margin-right: 4px;
+    cursor: pointer;
+}
+
+.triangle-wrapper {
+  width: 60px;
+  height: 60px;
+  background-color: #fff;
+  border: 2px solid #2ed573;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.triangle-left {
+  width: 20px;
+  height: 20px;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 16px solid #2ed573;
+  margin-right: 10px;
+  border-radius: 3px;
+}
+
+
+.video-popup {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.video-popup .video-content {
+  position: relative;
+  width: 90%;
+  max-width: 800px;
+}
+
+.video-popup iframe {
+  width: 100%;
+  height: 450px;
+}
+
+.close-btn {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  font-size: 36px;
+  color: white;
   cursor: pointer;
 }
 
@@ -707,3 +835,5 @@ textarea {
   margin-top: 20px;
   margin-left: 10px;
 }
+
+
