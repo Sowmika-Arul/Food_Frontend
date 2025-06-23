@@ -14,7 +14,6 @@ const pizzaData = [
   { image: "pizza8.png", price: 190, hasDiscount: false },
 ];
 
-
   const cardContainer = document.getElementById('pizzaCardsContainer');
 
   pizzaData.forEach(pizza => {
@@ -45,10 +44,9 @@ const pizzaData = [
               <span>50-79 min</span>
             </div>
           </div>
- <!-- Initial "+" button only -->
+
 <button class="initial-plus" onclick="showQuantity(this)">+</button>
 
-<!-- Hidden quantity controls -->
 <div class="quantity full-quantity" style="display: none;">
  <button class="qty-btn-minus" onclick="changeQty(this, -1)">-</button>
   <input type="text" class="qty-display" value="1" readonly />
@@ -126,10 +124,8 @@ dishes.forEach(dish => {
             <span>${dish.time}</span>
           </div>
         </div>
-        <!-- Initial "+" button only -->
 <button class="initial-plus" onclick="showQuantity(this)">+</button>
 
-<!-- Hidden quantity controls -->
 <div class="quantity full-quantity" style="display: none;">
  <button class="qty-btn-minus" onclick="changeQty(this, -1)">-</button>
   <input type="text" class="qty-display" value="1" readonly />
@@ -209,9 +205,6 @@ document.getElementById('requestBtn').addEventListener('click', () => {
 
   openModal();
 });
-
-
-
 
 
 function submitOrder() {
@@ -305,3 +298,28 @@ function changeQty(button, amount) {
     document.getElementById("totalPrice").innerText = quantity * basePrice;
   }
 }
+
+let autoScroll;
+
+function startAutoScroll() {
+  autoScroll = setInterval(() => {
+    if (position > maxTranslate) {
+      position -= (cardWidth + gap);
+    } else {
+      position = 0;
+    }
+    track.style.transform = `translateX(${position}px)`;
+  }, 5000);
+}
+
+function stopAutoScroll() {
+  clearInterval(autoScroll);
+}
+
+startAutoScroll();
+
+const cards = document.querySelectorAll('.card');
+cards.forEach(card => {
+  card.addEventListener('mouseenter', stopAutoScroll);
+  card.addEventListener('mouseleave', startAutoScroll);
+});
