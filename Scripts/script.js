@@ -1,3 +1,4 @@
+// Dynamincally render dish cards from an array of dish objects
 
 const pizzaData = [
   { image: "pizza1.jpeg", price: 190, hasDiscount: true, discountImage: "Discount.png" },
@@ -59,6 +60,9 @@ const pizzaData = [
 
     cardContainer.appendChild(card);
   });
+
+
+//Dynamicallly populated the popular dishes from the array objects
 
 const dishes = [
   {
@@ -124,6 +128,7 @@ dishes.forEach(dish => {
             <span>${dish.time}</span>
           </div>
         </div>
+        
 <button class="initial-plus" onclick="showQuantity(this)">+</button>
 
 <div class="quantity full-quantity" style="display: none;">
@@ -138,6 +143,7 @@ dishes.forEach(dish => {
   track.appendChild(card);
 });
 
+//applied carousel and adjusting 3 cards per row
 
 const prevBtn = document.querySelector(".prev");
 const nextBtn = document.querySelector(".next");
@@ -164,13 +170,13 @@ prevBtn.addEventListener("click", () => {
   }
 });
 
+//selected the particular dish from the kitchen or popular items and opening the model whether to submit or we can cancel the order
 
 let selectedCard = null;
 let selectedName = "";
 let selectedPrice = 0;
 let selectedImage = "";
 let quantity = 1;
-
 
 document.addEventListener('click', (e) => {
   const card = e.target.closest('.pizza-card, .card');
@@ -223,6 +229,8 @@ function closeModal() {
 }
 
 
+// To watch the video and adding the features like pause and play
+
 const video = document.getElementById('youtubeVideo');
 const button = document.getElementById('toggleButton');
 
@@ -250,6 +258,8 @@ function toggleVideo() {
     video.pause();
   }
 }
+
+//To change the quantity of the dish based on the symbol
 
 function showQuantity(button) {
   const card = button.closest('.pizza-card, .card');
@@ -298,6 +308,8 @@ function changeQty(button, amount) {
     document.getElementById("totalPrice").innerText = quantity * basePrice;
   }
 }
+
+//Auto scroll for every second in carousel
 
 let autoScroll;
 
