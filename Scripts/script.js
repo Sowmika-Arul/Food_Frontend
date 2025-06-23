@@ -50,7 +50,7 @@ const pizzaData = [
 
 <!-- Hidden quantity controls -->
 <div class="quantity full-quantity" style="display: none;">
- <button class="qty-btn" onclick="changeQty(this, -1)" style="text-align: center;">-</button>
+ <button class="qty-btn-minus" onclick="changeQty(this, -1)">-</button>
   <input type="text" class="qty-display" value="1" readonly />
   <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
 </div>
@@ -62,7 +62,87 @@ const pizzaData = [
     cardContainer.appendChild(card);
   });
 
-const track = document.querySelector(".carousel-track");
+const dishes = [
+  {
+    name: "Home made pizza",
+    price: 190,
+    image: "../Assets/pizza1.jpeg",
+    discount: false,
+    rating: "4.7",
+    time: "50-79 min"
+  },
+  {
+    name: "Tandoori Chicken",
+    price: 184,
+    image: "../Assets/chicken.jpeg",
+    discount: "../Assets/discount1.png",
+    rating: "4.7",
+    time: "15-29 min"
+  },
+  {
+    name: "Chilli Chicken",
+    price: 116,
+    image: "../Assets/chicken1.jpeg",
+    discount: "../Assets/Discount.png",
+    rating: "4.7",
+    time: "30-40 min"
+  },
+  {
+    name: "Home made pizza",
+    price: 190,
+    image: "../Assets/pizza6.jpeg",
+    discount: false,
+    rating: "4.7",
+    time: "50-79 min"
+  }
+];
+
+const track = document.querySelector('.carousel-track');
+
+
+dishes.forEach(dish => {
+  const card = document.createElement('div');
+  card.className = 'card';
+
+  card.innerHTML = `
+    ${dish.discount ? `<img src="${dish.discount}" alt="discount" class="discount-badge" />` : ''}
+    <img src="${dish.image}" alt="${dish.name}" class="pizza-image" />
+    
+    <div class="card-content">
+      <div class="card-header">
+        <span class="pizza-title">${dish.name}</span>
+        <span class="pizza-price">₹${dish.price}</span>
+      </div>
+      
+      <div class="card-footer">
+        <div class="badge-container">
+          <span class="badge flat">
+            <svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" fill="black">
+              <path d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+            ${dish.rating}
+          </span>
+          <div class="badge time">
+            <span>${dish.time}</span>
+          </div>
+        </div>
+        <!-- Initial "+" button only -->
+<button class="initial-plus" onclick="showQuantity(this)">+</button>
+
+<!-- Hidden quantity controls -->
+<div class="quantity full-quantity" style="display: none;">
+ <button class="qty-btn-minus" onclick="changeQty(this, -1)">-</button>
+  <input type="text" class="qty-display" value="1" readonly />
+  <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+</div>
+      </div>
+    </div>
+  `;
+
+  track.appendChild(card);
+});
+
+
 const prevBtn = document.querySelector(".prev");
 const nextBtn = document.querySelector(".next");
 
@@ -88,23 +168,32 @@ prevBtn.addEventListener("click", () => {
   }
 });
 
+
 let selectedCard = null;
 let selectedName = "";
 let selectedPrice = 0;
 let selectedImage = "";
 let quantity = 1;
 
-document.querySelectorAll('.card').forEach(card => {
-  card.addEventListener('click', () => {
-    if (selectedCard) selectedCard.classList.remove('selected');
-    card.classList.add('selected');
-    selectedCard = card;
 
-    selectedName = card.querySelector('.pizza-title').innerText;
-    selectedPrice = parseInt(card.querySelector('.pizza-price').innerText.replace("₹", ""));
-    selectedImage = card.querySelector('img.pizza-image').src;
-  });
+document.addEventListener('click', (e) => {
+  const card = e.target.closest('.pizza-card, .card');
+  if (!card) return;
+
+  if (selectedCard) selectedCard.classList.remove('selected');
+  card.classList.add('selected');
+  selectedCard = card;
+
+  selectedName = card.querySelector('.pizza-title').innerText;
+  selectedPrice = parseInt(card.querySelector('.pizza-price').innerText.replace("₹", ""));
+  selectedImage = card.querySelector('img.pizza-image').src;
+
+  const qtyInput = card.querySelector('.qty-display');
+  quantity = qtyInput ? parseInt(qtyInput.value) : 1;
+
+  console.log("Selected:", selectedName, selectedPrice, selectedImage, quantity);
 });
+
 
 document.getElementById('requestBtn').addEventListener('click', () => {
   if (!selectedCard) {
@@ -112,22 +201,18 @@ document.getElementById('requestBtn').addEventListener('click', () => {
     return;
   }
 
-  quantity = 1;
   document.getElementById("modalDishName").innerText = selectedName;
   document.getElementById("modalImage").src = selectedImage;
   document.getElementById("modalPrice").innerText = selectedPrice;
   document.getElementById("quantity").innerText = quantity;
-  document.getElementById("totalPrice").innerText = selectedPrice;
+  document.getElementById("totalPrice").innerText = selectedPrice * quantity;
 
   openModal();
-
 });
 
-function changeQuantity(change) {
-  quantity = Math.max(1, quantity + change);
-  document.getElementById("quantity").innerText = quantity;
-  document.getElementById("totalPrice").innerText = quantity * selectedPrice;
-}
+
+
+
 
 function submitOrder() {
   alert(`Your order for "${selectedName}" (x${quantity}) has been placed!`);
@@ -136,12 +221,12 @@ function submitOrder() {
 
 function openModal() {
   document.getElementById("requestModal").style.display = "flex";
-  document.body.classList.add("modal-open"); // Lock scroll
+  document.body.classList.add("modal-open"); 
 }
 
 function closeModal() {
   document.getElementById("requestModal").style.display = "none";
-  document.body.classList.remove("modal-open"); // Unlock scroll
+  document.body.classList.remove("modal-open");
 }
 
 
@@ -174,23 +259,49 @@ function toggleVideo() {
 }
 
 function showQuantity(button) {
-  const card = button.closest('.card-footer');
-  card.querySelector('.initial-plus').style.display = 'none';
-  card.querySelector('.full-quantity').style.display = 'inline-flex';
+  const card = button.closest('.pizza-card, .card');
+  const quantityControls = card.querySelector('.full-quantity');
+
+  button.style.display = 'none'; 
+  quantityControls.style.display = 'flex'; 
 }
 
+
 function changeQty(button, amount) {
-  const card = button.closest('.card-footer');
-  const qtyInput = card.querySelector('.qty-display');
+  const cardFooter = button.closest('.card-footer');
+  const qtyInput = cardFooter.querySelector('.qty-display');
   let current = parseInt(qtyInput.value);
+
   current += amount;
+
+  const card = button.closest('.pizza-card, .card');
+  const priceSpan = card.querySelector('.pizza-price');
+
+
+  if (!priceSpan.dataset.basePrice) {
+    const originalPrice = parseInt(priceSpan.innerText.replace("₹", ""));
+    priceSpan.dataset.basePrice = originalPrice;
+  }
+
+  const basePrice = parseInt(priceSpan.dataset.basePrice);
 
   if (current < 1) {
     qtyInput.value = 1;
-    card.querySelector('.full-quantity').style.display = 'none';
-    card.querySelector('.initial-plus').style.display = 'inline-block';
+    cardFooter.querySelector('.full-quantity').style.display = 'none';
+    cardFooter.querySelector('.initial-plus').style.display = 'inline-block';
+    priceSpan.innerText = `₹${basePrice}`; 
     return;
   }
 
   qtyInput.value = current;
+
+
+  const updatedPrice = basePrice * current;
+  priceSpan.innerText = `₹${updatedPrice}`;
+
+  if (card.classList.contains('selected')) {
+    quantity = current;
+    document.getElementById("quantity").innerText = quantity;
+    document.getElementById("totalPrice").innerText = quantity * basePrice;
+  }
 }
